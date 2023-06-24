@@ -2,7 +2,9 @@
 # Object Relational Mapping
 
 ## Description
-
+This project serves as a solid foundation for building an e-commerce backend, 
+providing essential endpoints and data management capabilities to support a 
+robust and scalable online shopping experience.
 
 ## 
   ## Table of Contents
@@ -17,16 +19,18 @@
 ## Installation
 - Node.js
 - Express.js
-- Jest 
-- uuidv4
+- MySQL Workbench 
+- dotenv
+- MySQL2
+- Sequelize
+- Insomnia
 - Visual Studio Code
 
 ## Usage
-Host an online application using express.js
+Host an online server using express.js to interact with an SQL database using api requests.
 
 ## License
 N/A
-
 
 ## Contributing
 Chase Barrett-Brown
@@ -36,15 +40,11 @@ Chase Barrett-Brown
 N/A
 
 ## Screenshot
-### Hosted index.html
-![index.html](./develop/assets/index.PNG)
+### Insomnia requests
+![insomnia](./Assets/Insomnia.png)
 
-### Hosted notes.html
-![notes.html](./develop/assets/Notes.PNG)
+## Walkthrough Video
 
-## Deployment
-
-Link: https://polar-ridge-61059.herokuapp.com/
 
 ## Questions
 If you have any questions, feel free to reach out to me:

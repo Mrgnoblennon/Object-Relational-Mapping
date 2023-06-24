@@ -78,20 +78,28 @@ router.put('/:id', (req, res) => {
 });
 
 router.delete('/:id', (req, res) => {
-  // delete on tag by its `id` value
-  Tag.destroy({
-    where: {
-      id: req.params.id,
-    },
-  })
-    .then((deletedTag) => {
-      if (!deletedTag) {
+  // delete a tag by its `id` value and its associated product tags
+  Tag.findByPk(req.params.id)
+    .then((tag) => {
+      if (!tag) {
         // If no tag is found with the given id, return a 404 status
         res.status(404).json({ message: 'No tag found with this id' });
         return;
       }
-      // If the tag is deleted successfully, return a success message
-      res.status(200).json({ message: 'Tag deleted successfully' });
+      // Delete the associated product tags first
+      return ProductTag.destroy({
+        where: {
+          tag_id: req.params.id,
+        },
+      })
+        .then(() => {
+          // Once the associated product tags are deleted, delete the tag itself
+          return tag.destroy();
+        })
+        .then(() => {
+          // If the tag and associated product tags are deleted successfully, return a success message
+          res.status(200).json({ message: 'Tag deleted successfully' });
+        });
     })
     .catch((err) => {
       console.log(err);
@@ -99,4 +107,5 @@ router.delete('/:id', (req, res) => {
     });
 });
 
-module.exports = router;
+
+module.exports = router
